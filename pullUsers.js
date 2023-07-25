@@ -1,3 +1,4 @@
+//Create a prototype/blueprint
 class GitHubUser {
   constructor(userName) {
     this.userName = userName; //val=DzoroV
@@ -5,7 +6,7 @@ class GitHubUser {
   printDetails() {
     console.log(this.userName);
   }
-
+//method to fetch the json
   async getUserDetails() {
     try {
       let res = await fetch(`https://api.github.com/users/${this.userName}`);
@@ -22,11 +23,13 @@ class GitHubUser {
         json.twitter_username,
         json.location
       );
+      
     } catch (Error) {
       return null;
     }
   }
 
+  //Creates a user card
   createUserCard(
     name,
     avatar,
@@ -54,6 +57,10 @@ class GitHubUser {
   }
 }
 
+//Initializing with self details.
+const start = new GitHubUser("DzoroV");
+start.getUserDetails();
+
 //Prints the input from user on console.
 function getVal() {
   const val = document.getElementById("search").value;
@@ -62,7 +69,4 @@ function getVal() {
   let p = new GitHubUser(val); //Dzoro
   // console.log(p);
   p.getUserDetails();
-
-  // let response = fetch("p");
-  // console.log(response);
 }
